@@ -23,12 +23,12 @@ Puppet::Type.type(:wget).provide(:ruby) do
   end
 
   def exists?
-    flag = :true
+    flag = true
     (@resource[:source]).each do |e|
       file = e.split("/").last
       puts "exists file is " + @resource[:path] + '/' + file
       if ! File.exists?(@resource[:path] + '/' + file)
-        flag = :false
+        flag = false
       end
     end
     flag
