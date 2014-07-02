@@ -1,7 +1,19 @@
 Puppet::Type.newtype(:wget) do
   @doc = "Wget files from remote locations"
 
-  ensurable
+  ensurable do
+    desc "Use wget to fetch a file. Valid values are: present, absent."
+ 
+    defaultto(:present)
+ 
+    newvalue(:present) do
+      provider.create
+    end
+ 
+    newvalue(:absent) do
+      provider.destroy
+    end
+  end
  
   newparam(:path) do
     desc "Destination"
