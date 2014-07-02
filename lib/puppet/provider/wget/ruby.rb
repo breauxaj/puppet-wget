@@ -4,6 +4,8 @@ Puppet::Type.type(:wget).provide(:ruby) do
   desc "WGET Support"
 
   commands :wget => 'wget'
+  
+  defaultfor :ensure => :present
 
   def create
     if File.directory? @resource[:path]
