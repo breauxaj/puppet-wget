@@ -7,21 +7,21 @@ Puppet::Type.type(:wget).provide(:ruby) do
 
   def create
     if File.directory? @resource[:path]
-      @resource[:source]).each do |s|
+      @resource[:source].each do |s|
         wget r, '-P', @resource[:path]
       end
     end
   end
 
   def destroy
-    @resource[:source]).each do |s|
+    @resource[:source].each do |s|
       file = s.split("/").last
       FileUtils.rm_f(@resource[:path] + file)
     end
   end
 
   def exists?
-    @resource[:source]).each do |s|
+    @resource[:source].each do |s|
       file = s.split("/").last
       File.exists?(@resource[:path] + file)
     end
