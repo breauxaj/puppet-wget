@@ -9,7 +9,7 @@ Puppet::Type.type(:wget).provide(:ruby) do
     if File.directory? @resource[:path]
       (@resource[:source]).each do |c|
         puts "source is " + c
-        wget c, '-P', @resource[:path]
+        wget '-nc', c, '-P', @resource[:path]
       end
     end
   end
@@ -23,10 +23,13 @@ Puppet::Type.type(:wget).provide(:ruby) do
   end
 
   def exists?
+    flag = :true
     (@resource[:source]).each do |e|
       file = e.split("/").last
       puts "exists file is " + @resource[:path] + '/' + file
-      File.exists?(@resource[:path] + '/' + file)
+      if ! File.exists?(@resource[:path] + '/' + file)
+        flag = :false
+      end
     end
   end
 
