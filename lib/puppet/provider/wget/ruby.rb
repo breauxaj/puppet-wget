@@ -14,13 +14,13 @@ Puppet::Type.type(:wget).provide(:ruby) do
 
   def destroy
     file = resource[:source].split("/").last
-    puts resource[:name], file
+    puts resource[:name] + '/' + file
     FileUtils.rm_f resource[:name] + '/' + file
   end
 
   def exists?
     file = resource[:source].split("/").last
-    puts resource[:name], file
+    puts resource[:name] + '/' + file
     File.exists? resource[:name] + '/' + file
   end
   
