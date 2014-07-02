@@ -31,6 +31,7 @@ Puppet::Type.type(:wget).provide(:ruby) do
         flag = :false
       end
     end
+    flag
   end
 
 end
