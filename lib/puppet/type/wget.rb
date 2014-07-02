@@ -7,7 +7,7 @@ Puppet::Type.newtype(:wget) do
     desc "Destination"
 
     validate do |value|
-      unless value =~ /^\/[a-z0-9]+\//
+      unless value =~ /\A^\/(?:[0-9a-zA-Z\_\-]+\/)+\z/
         raise ArgumentError , "%s is not a valid file path" % value
       end
     end
