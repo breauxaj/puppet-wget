@@ -8,6 +8,7 @@ Puppet::Type.type(:wget).provide(:ruby) do
   def create
     if File.directory? @resource[:path]
       (@resource[:source]).each do |s|
+        puts "source is " + s
         wget r, '-P', @resource[:path]
       end
     end
@@ -15,6 +16,7 @@ Puppet::Type.type(:wget).provide(:ruby) do
 
   def destroy
     (@resource[:source]).each do |s|
+      puts "source is " + s
       file = s.split("/").last
       FileUtils.rm_f(@resource[:path] + file)
     end
@@ -22,6 +24,7 @@ Puppet::Type.type(:wget).provide(:ruby) do
 
   def exists?
     (@resource[:source]).each do |s|
+      puts "source is " + s
       file = s.split("/").last
       File.exists?(@resource[:path] + file)
     end
