@@ -21,4 +21,10 @@ Puppet::Type.newtype(:wget) do
 
   end
 
+  newproperty(:ensure) do
+    desc "Setting a default action"
+    
+    defaultto(:present)
+  end
+
 end
