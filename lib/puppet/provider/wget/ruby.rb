@@ -6,8 +6,10 @@ Puppet::Type.type(:wget).provide(:ruby) do
   commands :wget => 'wget'
 
   def create
-    puts resource[:source], resource[:name]
-    wget resource[:source], '-P', resource[:name]
+    if File.directory? resource[:name]
+      puts resource[:source], resource[:name]
+      wget resource[:source], '-P', resource[:name]
+    end
   end
 
   def destroy
