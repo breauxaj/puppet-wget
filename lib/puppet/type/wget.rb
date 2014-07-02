@@ -3,18 +3,18 @@ Puppet::Type.newtype(:wget) do
 
   ensurable do
     desc "Use wget to fetch a file. Valid values are: present, absent."
- 
+
     defaultto(:present)
- 
+
     newvalue(:present) do
       provider.create
     end
- 
+
     newvalue(:absent) do
       provider.destroy
     end
   end
- 
+
   newparam(:path) do
     desc "Destination"
 
@@ -28,8 +28,8 @@ Puppet::Type.newtype(:wget) do
 
   end
 
-  newparam(:source) do
-    desc "Source"
+  newparam(:source, :array_matching => :all) do
+    desc "List of sources"
 
   end
 
